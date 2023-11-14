@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4; /* Cor de fundo sugestiva de ofertas */
+        }
+
+        h1 {
+            color: #333; /* Cor do texto principal */
+        }
+
+        #countdown {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        #offer-button {
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #ff6600; /* Cor de fundo sugestiva de ofertas */
+            color: #fff; /* Cor do texto do botão */
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #offer-button:hover {
+            background-color: #e64d00; /* Cor de fundo alterada ao passar o mouse */
+        }
+
+        #status {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #666; /* Cor do texto informativo */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Cyber Monday 2023</h1>
+    <div id="countdown"></div>
+    <button id="offer-button" onclick="redirectToOffers()">Ver Ofertas Especiais</button>
+    <div id="status"></div>
+
+  <script>
+    // Definindo a data do Cyber Monday
+    const cyberMondayDate = new Date('Nov 27, 2023 00:00:00').getTime();
+
+    // Atualizando a contagem regressiva a cada segundo
+    const countdownInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = cyberMondayDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      // Verificando se a contagem regressiva chegou ao fim
+      if (distance < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById('countdown').style.display = 'none';
+        document.getElementById('offer-button').style.display = 'none';
+        document.getElementById('status').innerHTML = 'A Cyber Monday acabou! Confira nossas ofertas especiais.';
+      }
+    }, 1000);
+
+    // Função para redirecionar para as ofertas especiais
+    function redirectToOffers() {
+      window.location.href = 'https://www.cybermondaybrasil.com.br/';
+    }
+  </script>
+
+</body>
+</html>
